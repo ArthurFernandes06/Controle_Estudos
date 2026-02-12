@@ -1,0 +1,6 @@
+#editor
+/.vscode
+
+#cache
+/__pycache__
+*.pyc
