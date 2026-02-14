@@ -1,13 +1,10 @@
-import pymysql
+import sqlite3
+from contextlib import contextmanager
 
-
+@contextmanager
 def connect_db():
-    connection = pymysql.connect(
-        host='localhost',
-        user='app_user',
-        password='ItIJ0ENs*}',
-        database='controle_estudos'
-    )
+    connection = sqlite3.connect("controle_estudos.db")
+    connection.execute("PRAGMA foreign_keys = ON;")
     try:
         yield connection
     finally:

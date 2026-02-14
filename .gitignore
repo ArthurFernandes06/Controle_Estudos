@@ -1,6 +1,12 @@
 #editor
 /.vscode
 
+#ambiente virtual
+/venv
+/.venv
+
 #cache
 /__pycache__
 *.pyc
+#SQLite
+*.db
