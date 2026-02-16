@@ -1,4 +1,4 @@
-from core.database import connect_db
+from core import connect_db
 
 def salvar_user(email: str, senha: str):
     with connect_db() as connection:

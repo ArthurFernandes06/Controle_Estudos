@@ -1,6 +1,6 @@
 from fastapi import APIRouter, status
-from schemas.user import SchemaUser
-from repositories.user import salvar_user
+from schemas import SchemaUser
+from repositories import salvar_user
 
 router = APIRouter()
 

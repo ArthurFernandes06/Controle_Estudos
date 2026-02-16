@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from routes.materia import router as router_materia
-from routes.user import router as router_user
+from routes import router_materia, router_user
+
 
 app = FastAPI()
 app.include_router(router_materia)

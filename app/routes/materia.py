@@ -1,6 +1,6 @@
 from fastapi import APIRouter, status
-from schemas.materia import SchemaMateria
-from repositories.materia import salvar_materia
+from schemas import SchemaMateria
+from repositories import salvar_materia
 
 router = APIRouter()
 
@@ -8,3 +8,4 @@ router = APIRouter()
 def criar_materia(materia:SchemaMateria):
     salvar_materia(materia.user_id,materia.nome)
     return {"Mensagem": "Criado"}
+    

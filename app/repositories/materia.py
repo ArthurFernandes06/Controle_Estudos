@@ -1,4 +1,4 @@
-from core.database import connect_db
+from core import connect_db
 
 def salvar_materia(user_id: int, nome: str):
     with connect_db() as connection:
