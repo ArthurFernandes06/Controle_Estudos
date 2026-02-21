@@ -22,7 +22,7 @@ if __name__ == "__main__":
         #Criação de cliente
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS users(
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                id TEXT PRIMARY KEY,
                 email TEXT UNIQUE NOT NULL,
                 senha TEXT NOT NULL
             );
@@ -32,7 +32,7 @@ if __name__ == "__main__":
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS materias(
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                user_id INTEGER NOT NULL,
+                user_id TEXT NOT NULL,
                 nome TEXT NOT NULL,
                 FOREIGN KEY(user_id) references users(id) ON DELETE CASCADE
             );
