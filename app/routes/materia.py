@@ -7,8 +7,8 @@ from typing import Annotated
 router = APIRouter()
 
 @router.post("/materias/{user_id}",status_code=status.HTTP_201_CREATED)
-def criar_materia(materia:SchemaMateria):
-    salvar_materia(materia.user_id,materia.nome)
+def post_materia(materia:SchemaMateria):
+    salvar_materia(materia)
     return {"Mensagem": "Criado"}
 
 @router.get("/materias/{user_id}",status_code=status.HTTP_200_OK)
