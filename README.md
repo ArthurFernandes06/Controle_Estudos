@@ -24,3 +24,23 @@ A API utiliza um modelo relacional estruturado para garantir que cada estudante 
    ```bash
    git clone [https://github.com/ArthurFernandes06/Controle_Estudos.git](https://github.com/ArthurFernandes06/Controle_Estudos.git)
    cd Controle_Estudos
+
+2. **Crie um ambiente virtual:**
+   ```bash
+   python -m venv venv
+   # No Windows:
+   .\venv\Scripts\activate
+   # No Linux/Mac:
+   source venv/bin/activate
+
+3. **Baixe as depêndencias:**
+   ```bash
+   pip install -r requirements.txt
+
+4. **Inicie o servidor:**
+   ```bash
+   uvicorn app.main:app --reload
+
+5. **Acesse a documentação Interativa:**
+   ```bash
+   Abra o navegador em http://127.0.0.1:8000/docs
