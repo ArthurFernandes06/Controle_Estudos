@@ -3,6 +3,6 @@ from typing import Annotated
 from fastapi import Path
 
 class SchemaMateria(BaseModel):
-    user_id: Annotated[str,Path()]
+    user_id: str
     nome: str
 

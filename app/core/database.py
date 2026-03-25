@@ -49,15 +49,4 @@ if __name__ == "__main__":
             );
         """)
 
-        #Criação do registro de estudo
-        cursor.execute("""
-            CREATE TABLE IF NOT EXISTS sessao_estudos(
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                topico_id INTEGER NOT NULL,
-                duracao_minutos INTEGER,
-                inicio TEXT DEFAULT(datetime('now')),
-                fim TEXT, 
-                FOREIGN KEY(topico_id) REFERENCES topicos(id) ON DELETE CASCADE
-            );
-        """)
         connection.commit()
