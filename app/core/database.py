@@ -31,7 +31,7 @@ if __name__ == "__main__":
         #Criação de matérias
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS materias(
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                id TEXT PRIMARY KEY,
                 user_id TEXT NOT NULL,
                 nome TEXT NOT NULL,
                 FOREIGN KEY(user_id) references users(id) ON DELETE CASCADE
@@ -41,7 +41,7 @@ if __name__ == "__main__":
         #Criação de Tópicos
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS  topicos(
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                id TEXT PRIMARY KEY,
                 materia_id INTEGER NOT NULL,
                 nome TEXT NOT NULL,
                 prazo TEXT,

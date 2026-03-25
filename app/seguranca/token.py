@@ -50,7 +50,7 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
     return user
 
 @router.post("/token")
-async def login_for_acess(form_data: Annotated[OAuth2PasswordRequestForm, Depends()],)-> Token:
+async def login_for_access(form_data: Annotated[OAuth2PasswordRequestForm, Depends()],)-> Token:
     user = autenticar_user(form_data.username, form_data.password)
 
     if not user:

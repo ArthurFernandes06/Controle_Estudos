@@ -9,7 +9,7 @@ from fastapi import APIRouter,Depends, status
 
 router = APIRouter()
 
-@router.post("/topicos/{materia_id}",status_code= status.HTTP_201_CREATED)
+@router.post("/materias/{materia_id}/topicos/",status_code= status.HTTP_201_CREATED)
 def post_topicos(
     materia_id: str,
     topico: SchemaTopico,

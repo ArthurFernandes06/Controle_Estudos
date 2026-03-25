@@ -23,3 +23,6 @@ async def get_materias(current_user: Annotated[UserInDB, Depends(get_current_use
     materias = listar_materias(user_id=current_user.id)
     return materias
 
+@router.put("/materias/",status_code=status.HTTP_200_OK)
+async def atualizar_materias(current_user: Annotated[UserInDB, Depends(get_current_user)]):
+    pass

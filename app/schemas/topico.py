@@ -4,6 +4,6 @@ from typing import Annotated
 from fastapi import Path
 
 class SchemaTopico(BaseModel):
-    materia_id: Annotated[int,Path()]
+    materia_id: str
     nome: str
     prazo: datetime | None = None
