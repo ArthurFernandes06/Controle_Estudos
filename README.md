@@ -37,10 +37,16 @@ A API utiliza um modelo relacional estruturado para garantir que cada estudante 
    ```bash
    pip install -r requirements.txt
 
-4. **Inicie o servidor:**
+4. **Execute o batabase.py**
    ```bash
+   cd app/core
+   python database.py
+
+5. **Inicie o servidor:**
+   ```bash
+   cd ..
    uvicorn app.main:app --reload
 
-5. **Acesse a documentação Interativa:**
+6. **Acesse a documentação Interativa:**
    ```bash
    Abra o navegador em http://127.0.0.1:8000/docs
