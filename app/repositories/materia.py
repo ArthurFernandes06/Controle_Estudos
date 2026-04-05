@@ -11,7 +11,11 @@ def salvar_materia(materia: SchemaMateria):
         cursor.execute("""
             INSERT INTO materias (id,user_id, nome)
             VALUES (?, ?)
+<<<<<<< HEAD
         """, (id, user_id, nome,))
+=======
+        """, (user_id, nome,))
+>>>>>>> 7696eb7 (senha e token)
 
         connection.commit()
 
