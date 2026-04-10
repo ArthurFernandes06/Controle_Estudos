@@ -4,6 +4,8 @@ from typing import Annotated
 from fastapi import Path
 
 class SchemaTopico(BaseModel):
-    materia_id: str
+    id: str
+    id_materia: str
+    descricao: str | None = None
     nome: str
     prazo: datetime | None = None

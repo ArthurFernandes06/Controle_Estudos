@@ -11,7 +11,7 @@ def salvar_topico(topico: SchemaTopico):
         cursor = connection.cursor()
         cursor.execute("""
             INSERT INTO topicos (id,materia_id,nome,prazo)
-            VALUES(?,?,?);
+            VALUES(%s , %s, %s);
             """,(id, materia_id,nome,prazo,))
         
         connection.commit()

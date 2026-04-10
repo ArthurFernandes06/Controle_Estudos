@@ -1,52 +1,21 @@
-import sqlite3
-import os
 from contextlib import contextmanager
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-PROJECT_ROOT = os.path.abspath(os.path.join(BASE_DIR, "../../"))
-DB_PATH = os.path.join(PROJECT_ROOT,"controle_estudos.db")
+import psycopg2
+import os
 
 @contextmanager
 def connect_db():
-    connection = sqlite3.connect(DB_PATH)
-    connection.execute("PRAGMA foreign_keys = ON;")
+    connection = psycopg2.connect(
+        host= os.getenv("HOST_DB"),          
+        database= os.getenv("POSTGRES_DB"),
+        user= os.getenv("APP_DB_USER"),
+        password= os.getenv("APP_DB_PASSWORD")
+    )
+    
     try:
         yield connection
+
     finally:
         connection.close()
 
-if __name__ == "__main__":
-    with connect_db() as connection:
-        cursor = connection.cursor()
-
-        #Criação de cliente
-        cursor.execute("""
-            CREATE TABLE IF NOT EXISTS users(
-                id TEXT PRIMARY KEY,
-                email TEXT UNIQUE NOT NULL,
-                senha TEXT NOT NULL
-            );
-        """)
-
-        #Criação de matérias
-        cursor.execute("""
-            CREATE TABLE IF NOT EXISTS materias(
-                id TEXT PRIMARY KEY,
-                user_id TEXT NOT NULL,
-                nome TEXT NOT NULL,
-                FOREIGN KEY(user_id) references users(id) ON DELETE CASCADE
-            );
-        """)
-
-        #Criação de Tópicos
-        cursor.execute("""
-            CREATE TABLE IF NOT EXISTS  topicos(
-                id TEXT PRIMARY KEY,
-                materia_id INTEGER NOT NULL,
-                nome TEXT NOT NULL,
-                prazo TEXT,
-                FOREIGN KEY(materia_id) REFERENCES materias(id) ON DELETE CASCADE
-            );
-        """)
-
-        connection.commit()
+print(os.getenv("DB_HOST"))
+print(os.getenv("POSTGRES_DB"))

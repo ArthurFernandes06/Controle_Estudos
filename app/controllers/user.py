@@ -9,18 +9,19 @@ def salvar_user(email: str, senha_hash: str):
         id = str(uuid.uuid4())
         cursor.execute("""
             INSERT INTO users (id,email, senha)
-            VALUES (?,?, ?)
+            VALUES (%s , %s, %s)
         """, (id,email, senha_hash,))
 
         connection.commit()
 
-def get_user(email: str):
+def get_user(username: str):
     with connect_db() as connection:
         cursor = connection.cursor()
 
         cursor.execute("""
-        SELECT * FROM users WHERE email = ?
-        """,(email,))
+        SELECT * FROM users WHERE username = %s
+        """,(username,))
 
         resultado = cursor.fetchall()
-    return resultado
+        user = UserInDB(id=resultado[id],)
+    return user

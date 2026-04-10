@@ -10,8 +10,8 @@ def get_password_hash(senha):
 def verifica_senha(senha_input: str, senha_hashed: str):
     return password_hash.verify(senha_input,senha_hashed)
 
-def autenticar_user(email: str, senha: str):
-    user = get_user(email)
+def autenticar_user(username: str, senha: str):
+    user = get_user(username)
     if not user:
         verifica_senha(senha, SENHA_GENIAL)
         return False
