@@ -1,5 +1,5 @@
-from core import connect_db
-from schemas import UserInDB
+from ..core import connect_db
+from ..schemas import UserInDB
 import uuid
 
 def salvar_user(email: str, senha_hash: str):
@@ -10,7 +10,7 @@ def salvar_user(email: str, senha_hash: str):
         cursor.execute("""
             INSERT INTO users (id,email, senha)
             VALUES (?,?, ?)
-        """, (id,email, senha,))
+        """, (id,email, senha_hash,))
 
         connection.commit()
 

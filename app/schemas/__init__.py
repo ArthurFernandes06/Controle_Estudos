@@ -1,9 +1,4 @@
-from schemas.materia import SchemaMateria
-<<<<<<< HEAD
-from schemas.user import SchemaUser, UserInDB
-from schemas.topico import SchemaTopico
-from schemas.token import Token, TokenData
-=======
-from schemas.user import SchemaUser
-from schemas.topico import SchemaTopico
->>>>>>> 7696eb7 (senha e token)
+from app.schemas.materia import SchemaMateria
+from app.schemas.user import SchemaUser, UserInDB
+from app.schemas.topico import SchemaTopico
+from app.schemas.token import Token, TokenData

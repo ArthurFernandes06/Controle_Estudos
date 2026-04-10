@@ -1,7 +1,7 @@
 
-from schemas import SchemaTopico, UserInDB
-from repositories import salvar_topico
-from seguranca import get_current_user
+from ..schemas import SchemaTopico, UserInDB
+from ..controllers import salvar_topico
+from ..security import get_current_user
 
 from typing import Annotated
 

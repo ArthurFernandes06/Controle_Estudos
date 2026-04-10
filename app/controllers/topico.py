@@ -1,5 +1,5 @@
-from core import connect_db
-from schemas import SchemaTopico
+from ..core import connect_db
+from ..schemas import SchemaTopico
 import uuid
 
 def salvar_topico(topico: SchemaTopico):

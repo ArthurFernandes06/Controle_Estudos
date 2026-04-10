@@ -1,1 +1,1 @@
-from core.database import connect_db
+from app.core.database import connect_db

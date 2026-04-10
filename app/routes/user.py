@@ -1,7 +1,7 @@
 from fastapi import APIRouter, status
-from schemas import SchemaUser
-from repositories import salvar_user
-from seguranca import get_password_hash
+from ..schemas import SchemaUser
+from ..controllers import salvar_user
+from ..security import get_password_hash
 
 router = APIRouter()
 

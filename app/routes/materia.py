@@ -1,8 +1,8 @@
-from schemas import SchemaMateria, UserInDB
-from repositories import salvar_materia, listar_materias
-from seguranca import get_current_user
+from ..schemas import SchemaMateria, UserInDB
+from ..controllers import salvar_materia, listar_materias
+from ..security import get_current_user
 
-from fastapi import APIRouter,Path, Request, status
+from fastapi import APIRouter, Depends,Path, Request, status
 from fastapi.responses import HTMLResponse
 from typing import Annotated
 
