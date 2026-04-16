@@ -1,8 +1,8 @@
 from ..repositories import get_user, salvar_user
-from ..security import verifica_senha, get_senha_genial, get_password_hash
+from ..security import verifica_senha, get_password_hash,get_senha_genial
 import uuid
 
-
+SENHA_GENIAL = get_senha_genial()
 
 class ModelUser:
     
@@ -11,6 +11,10 @@ class ModelUser:
         self._username = username
         self._email = email
         self._senha_hash = senha_hash
+
+    @property
+    def username(self):
+        return self._username
 
     @classmethod
     def criar_user(cls, username, email, senha):
@@ -21,13 +25,31 @@ class ModelUser:
 
     @classmethod
     def get_user_db(cls,username):
-        atributos = get_user(username)
-        id = atributos["id"]
-        email = atributos["email"]
-        senha_hash = atributos["senha_hash"]
+        try:
+            atributos = get_user(username)
+            id = atributos["id"]
+            email = atributos["email"]
+            senha_hash = atributos["senha_hash"]
+        except AttributeError:
+            return None
         return cls(id=id, username=username, email=email, senha_hash=senha_hash)
 
-    def autenticar(self,senha):
-        if not verifica_senha(senha_input=senha, senha_hashed=self._senha_hash):
-            return False
-        return True
+    @classmethod
+    def autenticar(cls,username, senha):
+        try:
+            atributos = get_user(username)
+            id = atributos["id"]
+            email = atributos["email"]
+            senha_hash = atributos["senha_hash"]
+
+            if verifica_senha(senha_input=senha, senha_hashed=senha_hash):
+                return cls(id=id, username=username, email=email, senha_hash=senha_hash)
+            return None
+        
+        except AttributeError:
+            verifica_senha(senha_input=senha, senha_hashed=SENHA_GENIAL)
+            return None
+        
+        
+        
+    

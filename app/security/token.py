@@ -1,12 +1,10 @@
 from ..schemas import TokenData, Token
-from app.security.senha import autenticar_user
-from ..controllers import get_user
 
 from datetime import datetime, timezone, timedelta
 from typing import Annotated
 
-from fastapi import APIRouter, Depends, HTTPException, status
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from fastapi import  Depends, HTTPException, status
+from fastapi.security import OAuth2PasswordBearer
 import jwt
 from jwt.exceptions import InvalidTokenError
 
@@ -16,7 +14,8 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
-router = APIRouter()
+def get_acess_token_expire():
+    return ACCESS_TOKEN_EXPIRE_MINUTES
 
 def create_access_token(data: dict, expires_delta: timedelta | None = None):
     to_encode = data.copy()
@@ -37,30 +36,11 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
     )
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        email = payload.get("sub")
-        if email is None:
+        username = payload.get("sub")
+        if username is None:
             raise credentials_exception
-        token_data = TokenData(email=email)
+        token_data = TokenData(username)
     except InvalidTokenError:
         raise credentials_exception
     
-    user = get_user(email)
-    if not user:
-        raise credentials_exception
-    return user
-
-@router.post("/token")
-async def login_for_access(form_data: Annotated[OAuth2PasswordRequestForm, Depends()],)-> Token:
-    user = autenticar_user(form_data.username, form_data.password)
-
-    if not user:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Email ou Senha incorretos",
-            headers={"WWW-Authenticate": "Bearer"},
-        )
-    access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-    access_token = create_access_token(
-        data={"sub": user.email}, expires_delta=access_token_expires
-    )
-    return Token(access_token=access_token, token_type="bearer")
+    return token_data

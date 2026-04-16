@@ -22,5 +22,5 @@ class ModelMateria:
     
     @property
     def nome(self):
-        return self.__nome
+        return self._nome
 
